@@ -3,7 +3,7 @@ export default class useScanner
     constructor(success) {
         this.success = success
         this.timeout = null
-        this.buffer = null
+        this.buffer = ''
 
         this.listener = event => {
             this.handler(event)
