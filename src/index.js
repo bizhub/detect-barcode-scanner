@@ -14,7 +14,7 @@ export default class BarcodeScanner {
         clearTimeout(this.typingTimer)
         this.barcode += event.key
 
-        this.typingTimer = setTimeout(this.check.bind(this), 1000)
+        this.typingTimer = setTimeout(this.check.bind(this), 120)
     }
 
     check() {
