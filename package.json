@@ -1,28 +1,27 @@
 {
-    "name": "@bizhub/scanner",
-    "version": "0.1.0",
-    "description": "",
-    "files": [],
-    "scripts": {},
-    "release": {
-      "branches": [
-        "master"
-      ]
-    },
-    "publishConfig": {
-      "access": "public"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/bizhub/scanner.git"
-    },
-    "keywords": [
-      "npm",
-      "javascript",
-      "typescript"
-    ],
-    "author": "Bizhub Limited",
-    "license": "MIT",
-    "devDependencies": {
-    }
+  "name": "@bizhub/scanner",
+  "version": "1.0.0",
+  "description": "",
+  "files": [],
+  "scripts": {},
+  "release": {
+    "branches": [
+      "master"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bizhub/detect-barcode-scanner.git"
+  },
+  "keywords": [
+    "npm",
+    "javascript"
+  ],
+  "author": "Bizhub Limited",
+  "license": "MIT",
+  "devDependencies": {
   }
+}

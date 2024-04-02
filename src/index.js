@@ -1,36 +1,39 @@
-export default class useScanner
-{
-    constructor(success) {
-        this.success = success
-        this.timeout = null
-        this.buffer = ''
+export default class BarcodeScanner {
+    constructor(options = {}) {
+        this.barcode = ''
+        this.typingTimer = null
 
-        this.listener = event => {
-            this.handler(event)
+        this.callback = options.callback || function (barcode) {
+            console.log('Barcode scanned: ' + barcode)
         }
-        document.addEventListener('keyup', this.listener)
+
+        document.addEventListener('keyup', this.keyUpHandler.bind(this))
     }
 
-    handler({key}) {
-        let valid = '0123456789'
+    keyUpHandler(event) {
+        clearTimeout(this.typingTimer)
+        this.barcode += event.key
 
-        if (valid.includes(key)) {
-            clearTimeout(this.timeout)
-            this.buffer = this.buffer + key
+        this.typingTimer = setTimeout(this.check.bind(this), 1000)
+    }
 
-            if (this.buffer.length == 13) {
-                this.success(this.buffer)
-
-                this.buffer = ''
-            }
-
-            this.timeout = setTimeout(() => {
-                this.buffer = ''
-            }, 120)
+    check() {
+        if (this.isEAN13() || this.isUPCA()) {
+            this.callback(this.barcode)
         }
+
+        this.barcode = ''
+    }
+
+    isEAN13() {
+        return /^\d{13}$/.test(this.barcode)
+    }
+
+    isUPCA() {
+        return /^\d{12}$/.test(this.barcode)
     }
 
     destroy() {
-        document.removeEventListener('keyup', this.listener)
+        document.removeEventListener('keyup', this.keyUpHandler.bind(this))
     }
 }
