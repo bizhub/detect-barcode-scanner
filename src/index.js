@@ -11,6 +11,10 @@ export default class BarcodeScanner {
     }
 
     keyUpHandler(event) {
+        if (event.key === 'Enter') {
+            return
+        }
+
         clearTimeout(this.typingTimer)
         this.barcode += event.key
 
