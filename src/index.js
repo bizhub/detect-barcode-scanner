@@ -7,7 +7,10 @@ export default class BarcodeScanner {
             console.log('Barcode scanned: ' + barcode)
         }
 
-        document.addEventListener('keyup', this.keyUpHandler.bind(this))
+        this.listener = event => {
+            this.keyUpHandler(event)
+        }
+        document.addEventListener('keyup', this.listener)
     }
 
     keyUpHandler(event) {
@@ -38,6 +41,6 @@ export default class BarcodeScanner {
     }
 
     destroy() {
-        document.removeEventListener('keyup', this.keyUpHandler.bind(this))
+        document.removeEventListener('keyup', this.listener)
     }
 }
